@@ -13,18 +13,31 @@ public class MernisServiceAdapter implements CustomerCheckService{
 
 	@Override
 	public boolean CheckIfRealPerson(Customer customer) {
-		       boolean result;
+		       boolean result=false;
 	
 			
 			
 				KPSPublicSoap client = new KPSPublicSoapProxy();
 				
-					return client.TCKimlikNoDogrula(
-							Long.parseLong(customer.getNationalityId()),
-							customer.getFirstName().toUpperCase(),
-							customer.getLastName().toUpperCase(),
-							customer.getDateOfBirth().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getYear());
-
+					try {
+						result =client.TCKimlikNoDogrula(
+								Long.parseLong(customer.getNationalityId()),
+								customer.getFirstName().toUpperCase(),
+								customer.getLastName().toUpperCase(),
+								customer.getDateOfBirth());
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (RemoteException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					if (result) {
+						System.out.println("doðru");
+					}
+					else
+						System.out.println("yanlýþ");
+					return result;
 			
 			
 
