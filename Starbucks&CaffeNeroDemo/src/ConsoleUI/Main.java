@@ -1,7 +1,7 @@
 package ConsoleUI;
 
 
-import java.util.Date;
+
 
 import Abstract.BaseCustomerManager;
 import Adapters.MernisServiceAdapter;
@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Customer customer=new Customer(111,"Engin","Demirog",1999,"111111111");
+		Customer customer=new Customer(111,"Selim","Baþkaya",2001,"42922915734");
 		BaseCustomerManager baseCustomerManager=new StarbucksCustomerManager(new MernisServiceAdapter());
 
 		baseCustomerManager.save(customer);

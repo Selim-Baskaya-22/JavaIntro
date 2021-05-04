@@ -8,6 +8,7 @@ import Entities.Gamer;
 
 public class Main {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		MernisServiceAdapter adapter=new MernisServiceAdapter();
 		Scanner scan = new Scanner(System.in);
