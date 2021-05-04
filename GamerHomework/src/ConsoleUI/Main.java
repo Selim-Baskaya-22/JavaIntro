@@ -3,7 +3,9 @@ package ConsoleUI;
 import java.util.Scanner;
 
 import Adapters.MernisServiceAdapter;
+import Business.GameManager;
 import Business.GamerManager;
+import Entities.Game;
 import Entities.Gamer;
 
 public class Main {
@@ -37,6 +39,18 @@ public class Main {
 		
 
 		Gamer[] gamers = { gamer };
+		
+		Game game=new Game();
+		game.setGameId(1);
+		game.setGameName("League Of Legends");
+		game.setUnitPrice(100);
+		
+		Game[] games= {game};
+		GameManager gameManager=new GameManager();
+		gameManager.add(game);
+
+		
+
 		int cikis;
 		GamerManager checkService = new GamerManager(new MernisServiceAdapter());
 		System.out.print("Menüye gitmek için herhangi bir sayýya basýnýz(0 hariç): ");
@@ -47,6 +61,7 @@ public class Main {
 			System.out.println("Güncellemek için 2'ye basýnýz: ");
 			System.out.println("Silmek için 3'e basýnýz: ");
 			System.out.println("Kayýtlarý listelemek için 4'e basýnýz: ");
+			System.out.println("Oyunlarý listelemek için 5'e basýnýz: ");
 			System.out.println("Çýkýþ için 0'a basýnýz: ");
 			cikis = scan.nextInt();
 			System.out.println("------------------");
@@ -55,11 +70,14 @@ public class Main {
 			else if (cikis == 2)
 				checkService.update(gamer);
 			else if (cikis == 3)
-				checkService.delete(gamer);
+				checkService.delete(gamer);			
 			else if (cikis == 4)
 				checkService.listele(gamers);
+			else if (cikis == 5)
+				gameManager.getAll(games);
 		}
 		System.out.println("Çýkýþ Yaptýnýz!!!");
+		System.out.println("Satýn alma iþlemlerine yönlendiriliyorsunuz...");
 	}
 
 }
