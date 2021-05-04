@@ -1,5 +1,6 @@
 package ConsoleUI;
 
+import java.util.Scanner;
 
 import Adapters.MernisServiceAdapter;
 import Business.GamerManager;
@@ -8,12 +9,56 @@ import Entities.Gamer;
 public class Main {
 
 	public static void main(String[] args) {
-		Gamer gamer=new Gamer(1, "Selim", "Baþkaya","Selim5757", 2001, "42922915734");
+		MernisServiceAdapter adapter=new MernisServiceAdapter();
+		Scanner scan = new Scanner(System.in);
+		boolean checkIf=false;
+		Gamer gamer = new Gamer();
 		
-		GamerManager checkService=new GamerManager(new MernisServiceAdapter());
-		checkService.register(gamer);
-		checkService.update(gamer);
-		checkService.delete(gamer);
+		while (checkIf==false) {
+			System.out.println("Kullanýcý Kayýt Ekraný\n----------------");
+			System.out.print("Ýsminizi Giriniz:");
+			gamer.setFirstName(scan.next());
+
+			System.out.print("Soyadýnýzý Giriniz:");
+			gamer.setLastName(scan.next());
+
+			System.out.print("Tc Giriniz:");
+			gamer.setNationalityId(scan.next());
+
+			System.out.print("Kullanýcý Ýsminizi(nickname) Giriniz:");
+			gamer.setNickName(scan.next());
+
+			System.out.print("Doðum Tarihi(yýl olarak) Giriniz:");
+			gamer.setDateOfBirth(scan.nextInt());
+			checkIf=adapter.checkIfRealPerson(gamer);
+			System.out.println("----------------");
+		}
+		
+
+		Gamer[] gamers = { gamer };
+		int cikis;
+		GamerManager checkService = new GamerManager(new MernisServiceAdapter());
+		System.out.print("Menüye gitmek için herhangi bir sayýya basýnýz(0 hariç): ");
+		cikis = scan.nextInt();
+		while (cikis != 0) {
+			System.out.println("-------Menü-------");
+			System.out.println("Kayýt olmak için 1'e basýnýz: ");
+			System.out.println("Güncellemek için 2'ye basýnýz: ");
+			System.out.println("Silmek için 3'e basýnýz: ");
+			System.out.println("Kayýtlarý listelemek için 4'e basýnýz: ");
+			System.out.println("Çýkýþ için 0'a basýnýz: ");
+			cikis = scan.nextInt();
+			System.out.println("------------------");
+			if (cikis == 1)
+				checkService.register(gamer);
+			else if (cikis == 2)
+				checkService.update(gamer);
+			else if (cikis == 3)
+				checkService.delete(gamer);
+			else if (cikis == 4)
+				checkService.listele(gamers);
+		}
+		System.out.println("Çýkýþ Yaptýnýz!!!");
 	}
 
 }
