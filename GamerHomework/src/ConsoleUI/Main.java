@@ -5,6 +5,8 @@ import java.util.Scanner;
 import Adapters.MernisServiceAdapter;
 import Business.GameManager;
 import Business.GamerManager;
+import Business.SalesManager;
+import Entities.Campaign;
 import Entities.Game;
 import Entities.Gamer;
 
@@ -78,6 +80,15 @@ public class Main {
 		}
 		System.out.println("Çýkýþ Yaptýnýz!!!");
 		System.out.println("Satýn alma iþlemlerine yönlendiriliyorsunuz...");
+		
+		Campaign campaign=new Campaign();
+		campaign.setId(1);
+		campaign.setCampaignName("Kýþ Sezonu Ýndirimleri");
+		campaign.setCampaignRate(20);
+		SalesManager manager=new SalesManager();
+		manager.sale(gamer, game);
+		manager.campaignSale(gamer, game, campaign);
+		
 	}
 
 }
