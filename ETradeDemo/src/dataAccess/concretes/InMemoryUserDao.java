@@ -47,6 +47,14 @@ public class InMemoryUserDao implements UserDao{
 		System.out.println("Kullanıcı Güncellendi: "+user.getFirstName()+" "+user.getLastName());		
 	}
 
+	/*Buradaki islem ise users.stream--> users listesini gez ve filtrele
+	nasil filtreleyim--> degisken ismi(userdaki nesneye eşitlik eder bu sayede nesne özelliklerine ulasabiliriz) esit ise 
+	parametreden gelen id'ye diyerek filtrelemis olduk.
+    Findfirst ise id ye göre arama yaptigimiz icin tek bir kayit dönecektir((id/tcno/sicilno)=unique yani essiz anahtarlardir).
+	Yani findfirst ile ilk gelen datayi getir demis oluyoruz. 
+	Orelse ise eger eslesen bir id yok ise null getir diyoruz.Ayni islemi email icin yapiyoruz. 
+	Burada da emaili essiz anahtar olarak düsünebiliriz :)
+	*/
 	@Override
 	public User get(int id) {
 		User user = users.stream()
