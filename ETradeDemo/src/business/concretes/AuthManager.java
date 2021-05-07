@@ -65,10 +65,10 @@ public class AuthManager implements AuthService{
 
 	private boolean isFirstandLastNameEmpty(User user) {
 		if (user.geteMail()==null || user.getPassword()==null) {
-			System.out.println("Kullanýcý adý veya parola eksik!");
+			System.out.println("Kullanıcı adı veya parola eksik!");
 			return false;
 		}
-		System.out.println("Sisteme giriþ yapýldý!");
+		System.out.println("Sisteme giriş yapıldı!");
 		return true;
 	}
 

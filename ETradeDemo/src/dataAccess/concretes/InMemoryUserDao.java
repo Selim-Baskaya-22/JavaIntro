@@ -33,7 +33,7 @@ public class InMemoryUserDao implements UserDao{
 	@Override
 	public void add(User user) {
 		System.out.println("Kullanýcý Eklendi: "+user.getFirstName()+" "+user.getLastName());
-		
+		users.add(user);
 	}
 
 	@Override
