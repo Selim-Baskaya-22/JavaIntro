@@ -47,20 +47,20 @@ public class Main {
 		
 		
 		
-		User[] users= {user};
+
 		UserService userService=new UserManager(new InMemoryUserDao(),new AuthManager(),new EmailManager());
 		userService.getAll();
+		//InMemory conctructerýnda yukarýdaki mailin aynýsý olduðu için hata vericektir
 		userService.add(user);
-
-	
-		//googleManager.login(new User(1,"Selimaaa","Baþkaya","selimbaskaya34@gmail.com","123123123"));
 		
 		int verificationCode=scan.nextInt();
 		userService.userVerify(user, verificationCode);
+
+
+
 		userService.add(user2);
-//		userService.getAll(users);
-//		System.out.println("***");
-//		userService.get(users, 1);
+
+
 	}
 
 }
