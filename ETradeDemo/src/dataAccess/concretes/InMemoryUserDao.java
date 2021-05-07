@@ -8,7 +8,16 @@ import entities.concretes.User;
 
 public class InMemoryUserDao implements UserDao{
 	List<User> users=new ArrayList<User>();
+	public InMemoryUserDao() {
+		System.out.println("---Kullanýcýlar---");
+		User user1=new User(1, "Selim", "Baþkaya", "selimbaskaya34@gmail.com", "123456");
+		User user2=new User(2, "Engin", "Demirog", "engindemirog34@gmail.com", "123123");
 
+		
+		users.add(user1);
+		users.add(user2);
+
+	}
 	@Override
 	public void add(User user) {
 		System.out.println("Kullanýcý Eklendi: "+user.getFirstName()+" "+user.getLastName());
@@ -28,17 +37,28 @@ public class InMemoryUserDao implements UserDao{
 
 	@Override
 	public User get(int id) {
-		for (User user:this.users) {
-			if (user.getId()==id) {
-				System.out.println("Kullanýcý: "+user.getFirstName()+" "+user.getLastName());
-				return user;
-			}
-		}
-		return null;
+		User user = users.stream()
+				.filter(u -> u.getId() == id)
+				.findFirst()
+				.orElse(null);
+		System.out.println("Kullanýcý adý: "+user.getFirstName());
+		return user;
 	}
-
+	@Override
+	public User getEmail(String mail) {
+		User user = users.stream()
+				.filter(u -> u.geteMail() == mail)
+				.findFirst()
+				.orElse(null);
+		
+		return user;
+	}
 	@Override
 	public List<User> getAll() {
+		for (User user : users) {
+			System.out.println(user.getFirstName());
+		}
+		System.out.println("----------------");
 		return this.users;
 	}
 

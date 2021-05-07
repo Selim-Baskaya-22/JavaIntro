@@ -12,5 +12,4 @@ public interface UserService {
 	User get(int id);
 	List<User> getAll();
 	void userVerify(User user,int verificationCode);
-	
 }

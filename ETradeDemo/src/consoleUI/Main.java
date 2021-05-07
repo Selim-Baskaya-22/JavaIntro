@@ -31,15 +31,36 @@ public class Main {
 		Scanner scan=new Scanner(System.in);
 		//UserService userService=new UserManager(new InMemoryUserDao(),new AuthManager(),new EmailManager());
 		AuthService googleManager=new GoogleManager();
-		
-		User user=new User(1,"Selimaa","Baþkaya","selimbaskaya34@gmail.com","yapma1991");
 	
-		UserService userService=new UserManager(new InMemoryUserDao(),new GoogleManager(),new EmailManager());
+		User user=new User();
+		user.setId(1);
+		user.setFirstName("Selimaa");
+		user.setLastName("Baþkaya");
+		user.seteMail("selimbaskaya34@gmail.com");
+    	user.setPassword("yapma1991");
+		User user2=new User();
+		user2.setId(2);
+		user2.setFirstName("Selimaaaaaaaaaa");
+	    user2.setLastName("Baþkaya");
+		user2.seteMail("selimbaskaya34@gmail.com");
+    	user2.setPassword("yapma1991");
+		
+		
+		
+		User[] users= {user};
+		UserService userService=new UserManager(new InMemoryUserDao(),new AuthManager(),new EmailManager());
+		userService.getAll();
 		userService.add(user);
-		googleManager.login(new User(1,"Selimaaa","Baþkaya","selimbaskaya34@gmail.com","123123123"));
+
+	
+		//googleManager.login(new User(1,"Selimaaa","Baþkaya","selimbaskaya34@gmail.com","123123123"));
 		
 		int verificationCode=scan.nextInt();
 		userService.userVerify(user, verificationCode);
+		userService.add(user2);
+//		userService.getAll(users);
+//		System.out.println("***");
+//		userService.get(users, 1);
 	}
 
 }

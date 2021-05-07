@@ -1,11 +1,14 @@
 package business.concretes;
 
+import java.util.ArrayList; 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import business.abstracts.AuthService;
-
+import business.abstracts.UserService;
 import core.utilities.BusinessRules;
 import entities.concretes.User;
+
 
 public class AuthManager implements AuthService{
 
@@ -14,8 +17,8 @@ public class AuthManager implements AuthService{
 	
 	
 	/*BusinessRules Yapisi;
-	 * Bu yapiyi öğrenmediğimiz icin aciklama gereği duydum. Buradaki ana yapı if mantığını sürekli kullanip kodlarimizi
-	 spagettiye çevirmek istemedim bu yuzden ana bir kontrol mekanizması kurup oradan isimizi halletmeye calistim detayli 
+	 * Bu yapiyi Ã¶Ã°renmediÃ°imiz icin aciklama gereÃ°i duydum. Buradaki ana yapÃ½ if mantÃ½Ã°Ã½nÃ½ sÃ¼rekli kullanip kodlarimizi
+	 spagettiye Ã§evirmek istemedim bu yuzden ana bir kontrol mekanizmasÃ½ kurup oradan isimizi halletmeye calistim detayli 
 	 bilgi icin core'daki BusinessRules' a bakiniz.  
 	  */
 	@Override
@@ -29,7 +32,7 @@ public class AuthManager implements AuthService{
 	
 	private boolean ifPasswordCheckLength(User user) {
 		if (user.getPassword().length()<6) {
-			System.out.println("Parola en az 6 karakter olmalıdır!");
+			System.out.println("Parola en az 6 karakter olmalÃ½dÃ½r!");
 			return false;
 		}
 		return true;
@@ -37,14 +40,14 @@ public class AuthManager implements AuthService{
 	
 	private boolean ifFirstNameCheckLength(User user) {
 		if (user.getFirstName().length()<2) {
-			System.out.println("İsim en az 2 karakter olmalıdır!");
+			System.out.println("Ãsim en az 2 karakter olmalÃ½dÃ½r!");
 			return false;
 		}
 		return true;
 	}
 	private boolean ifLastNameCheckLength(User user) {
 		if (user.getLastName().length()<2) {
-			System.out.println("Soyad en az 2 karakter olmalıdır!");
+			System.out.println("Soyad en az 2 karakter olmalÃ½dÃ½r!");
 			return false;
 		}
 		return true;
@@ -62,10 +65,11 @@ public class AuthManager implements AuthService{
 
 	private boolean isFirstandLastNameEmpty(User user) {
 		if (user.geteMail()==null || user.getPassword()==null) {
-			System.out.println("Kullanıcı adı veya parola eksik!");
+			System.out.println("KullanÃ½cÃ½ adÃ½ veya parola eksik!");
 			return false;
 		}
-		System.out.println("Sisteme giriş yapıldı!");
+		System.out.println("Sisteme giriÃ¾ yapÃ½ldÃ½!");
 		return true;
 	}
+
 }
